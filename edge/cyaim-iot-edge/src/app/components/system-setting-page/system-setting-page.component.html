@@ -1,0 +1,45 @@
+<div class="sys-setting" fxLayout='column' fxFill>
+  <div class="header" fxLayout='row' fxLayoutAlign='space-evenly center'>
+    <dl>
+      <dt>
+        <button mat-fab color="primary" aria-label="网络设置" routerLink="./network">
+          <mat-icon>router</mat-icon>
+        </button>
+      </dt>
+      <dd>
+        网络设置
+      </dd>
+    </dl>
+
+    <dl>
+      <dt>
+        <button mat-fab color="primary" aria-label="运行日志" routerLink="./run-log">
+          <mat-icon>feed</mat-icon>
+        </button>
+      </dt>
+      <dd>
+        运行日志
+      </dd>
+    </dl>
+
+    <dl>
+      <dt>
+        <button mat-fab color="primary" aria-label="系统状态" routerLink="./sys-state">
+          <mat-icon svgIcon="sysSetting:infomation"></mat-icon>
+        </button>
+      </dt>
+      <dd>
+        系统状态
+      </dd>
+    </dl>
+  </div>
+
+  <div class="content" fxFlex='80'>
+    <mat-card>
+      <mat-card-content>
+        <router-outlet></router-outlet>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>

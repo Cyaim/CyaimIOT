@@ -1,0 +1,56 @@
+<div class="setting" fxLayout='column' fxFill>
+  <div class="header" fxLayout='row' fxLayoutAlign='space-evenly center'>
+    <!-- <dl>
+      <dt>
+        <button mat-fab color="primary" aria-label="网络测速" routerLink="./network-speed">
+          <mat-icon>network_check</mat-icon>
+        </button>
+      </dt>
+      <dd>
+        网络测速
+      </dd>
+    </dl> -->
+
+    <dl>
+      <dt>
+        <button mat-fab color="primary" aria-label="服务器设置" routerLink="./server">
+          <mat-icon>cloud_queue</mat-icon>
+        </button>
+      </dt>
+      <dd>
+        服务器设置
+      </dd>
+    </dl>
+
+    <dl>
+      <dt>
+        <button mat-fab color="primary" aria-label="DDNS" routerLink="./ddns">
+          <mat-icon>dvr</mat-icon>
+        </button>
+      </dt>
+      <dd>
+        DDNS
+      </dd>
+    </dl>
+
+    <dl>
+      <dt>
+        <button mat-fab color="primary" aria-label="VPN" routerLink="./vpn">
+          <mat-icon>near_me</mat-icon>
+        </button>
+      </dt>
+      <dd>
+        VPN
+      </dd>
+    </dl>
+  </div>
+
+  <div class="content" fxFlex='80'>
+    <mat-card>
+      <mat-card-content>
+        <router-outlet></router-outlet>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>

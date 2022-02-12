@@ -1,0 +1,87 @@
+<div class="collect-setting list-card">
+  <div class="info-card">
+    <div class="title">
+      采集设置
+      <div class="btns">
+        <button mat-stroked-button (click)="editTask([-1])">添加任务</button>
+        <button mat-stroked-button color="warn" [disabled]="selection.selected.length>0?false:true"
+          (click)="delEdit(getAllSelectionId())">删除任务</button>
+
+        <button mat-stroked-button *ngIf="selection.selected.length>0"
+          (click)="editTask([selection.selected[0].id])">编辑第一个选中项</button>
+        <button mat-stroked-button *ngIf="selection.selected.length>1"
+          (click)="editTask(getAllSelectionId())">编辑所有选中</button>
+      </div>
+    </div>
+    <div class="content">
+      <table mat-table [dataSource]="dataSource">
+
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+              [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+
+        <!-- id Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>
+            <h3>No.</h3>
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- 事件 Column -->
+        <ng-container matColumnDef="event">
+          <th mat-header-cell *matHeaderCellDef>
+            <h3>任务名称</h3>
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.event}} </td>
+        </ng-container>
+
+        <!-- 时间 Column -->
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef>
+            <h3>采集周期</h3>
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+        </ng-container>
+
+        <!-- 描述 Column -->
+        <ng-container matColumnDef="describe">
+          <th mat-header-cell *matHeaderCellDef>
+            <h3>描述</h3>
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.describe}} </td>
+        </ng-container>
+
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
+      </table>
+
+      <mat-paginator #page [length]="pageSetting.pageTotal" [pageSize]="pageSetting.pageSize"
+        [pageSizeOptions]="pageSetting.pageSizeOptions" (page)="pageSetting.pageEvent = $event"
+        aria-label="Select page">
+      </mat-paginator>
+      <!-- <div *ngIf="pageSetting.pageEvent">
+        <h5>Page Change Event Properties</h5>
+        <div>List length: {{pageSetting.pageEvent.length}}</div>
+        <div>Page size: {{pageSetting.pageEvent.pageSize}}</div>
+        <div>Page index: {{pageSetting.pageEvent.pageIndex}}</div>
+
+        {{selection|json}}
+      </div> -->
+    </div>
+  </div>
+
+
+</div>

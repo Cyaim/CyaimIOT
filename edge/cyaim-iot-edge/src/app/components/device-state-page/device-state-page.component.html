@@ -1,0 +1,35 @@
+<div class="device-state" fxFlexFill fxLayout='column'>
+
+  <div class="state-header" fxFlex='20' fxLayoutGap='0px grid' fxLayoutAlign='center center'>
+
+    <a mat-button class="deviceImg" fxFlex='30' fxLayout='column' fxLayoutAlign='space-evenly center'
+      routerLink="./overview">
+      <img src="../../../assets/images/device.png" alt="设备">
+      <span>设备终端</span>
+    </a>
+
+    <div class="line" fxFlex='40'>
+      <div></div>
+    </div>
+
+    <a mat-button class="internet" fxFlex='30' fxLayout='column' fxLayoutAlign='space-evenly center'
+      routerLink="./internet">
+      <div class="icon">
+        <mat-icon svgIcon="deviceState:internet" aria-hidden="false" aria-label="互联网"></mat-icon>
+      </div>
+
+      <span>网络</span>
+    </a>
+
+  </div>
+
+
+  <div class="state-content" fxFlex='80'>
+    <mat-card>
+      <mat-card-content>
+        <router-outlet></router-outlet>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>

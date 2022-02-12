@@ -1,0 +1,230 @@
+<div class="network list-card">
+
+  <div class="info-card network-info">
+    <div class="title">
+      网络信息
+    </div>
+    <div class="content">
+      <mat-list role="list">
+        <mat-list-item role="listitem">
+          <span>连接类型：</span>
+          <span>DHCP</span>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <span>IP地址：</span>
+          <span>192.168.1.1</span>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <span>子网掩码：</span>
+          <span>255.255.0.0</span>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <span>默认网关：</span>
+          <span>192.168.1.1</span>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <span>DNS：</span>
+          <span>192.168.1.1</span>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <span>IPv6连接类型：</span>
+          <span>NAT6</span>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <span>WAN IPv6地址：</span>
+          <span>None</span>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <span>WAN IPv6网关：</span>
+          <span>None</span>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <span>LAN IPv6地址：</span>
+          <span>None</span>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <span>LAN IPv6前缀：</span>
+          <span>None</span>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <span>IPv6 DNS：</span>
+          <span></span>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </div>
+
+  <div class="info-card network-ipv4">
+    <div class="title">
+      IPv4网络设置
+    </div>
+    <div class="content">
+      <form fxLayout='column'>
+
+        <mat-form-field appearance="outline">
+          <mat-label>网络连接方式</mat-label>
+          <mat-select name="ipv4NetworkMode" [(value)]="ipv4Mode" (valueChange)="changeNetWorkMode($event)">
+            <mat-option value="dhcp">
+              DHCP
+            </mat-option>
+            <mat-option value="static">
+              静态IP
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" *ngIf="ipv4Mode==='static'">
+          <mat-label>IPv4地址</mat-label>
+          <input matInput placeholder="请输入IPv4地址" name="ipv4" [(ngModel)]="ipv4">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" *ngIf="ipv4Mode==='static'">
+          <mat-label>子网掩码</mat-label>
+          <input matInput placeholder="请输入IPv4子网掩码" name="ipv4Subnetmask" [(ngModel)]="ipv4Subnetmask">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" *ngIf="ipv4Mode==='static'">
+          <mat-label>网关</mat-label>
+          <input matInput placeholder="请输入IPv4网关" name="ipv4Gateway" [(ngModel)]="ipv4Gateway">
+        </mat-form-field>
+
+        <mat-slide-toggle class="" name="hasSetIPv4DNS" [color]="color" [(ngModel)]="ipv4DnsChecked" [disabled]="false">
+          配置DNS
+        </mat-slide-toggle>
+
+        <mat-form-field class="" appearance="outline" *ngIf="ipv4DnsChecked">
+          <mat-label>DNS1</mat-label>
+          <input matInput type="text" name="ipv4Dns1" [(ngModel)]="ipv4Dns1">
+          <button *ngIf="ipv4Dns1" matSuffix mat-icon-button aria-label="Clear" (click)="ipv4Dns1=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field class="" appearance="outline" *ngIf="ipv4DnsChecked">
+          <mat-label>DNS2</mat-label>
+          <input matInput type="text" name="ipv4Dns2" [(ngModel)]="ipv4Dns2">
+          <button *ngIf="ipv4Dns2" matSuffix mat-icon-button aria-label="Clear" (click)="ipv4Dns2=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
+
+    </div>
+  </div>
+
+  <div class="info-card network-ipv6">
+    <div class="title">
+      IPv6网络设置
+      <mat-slide-toggle class="" name="isOpenIPv6" [color]="color" [(ngModel)]="ipv6Enabled">
+      </mat-slide-toggle>
+    </div>
+    <div class="content" [hidden]="!ipv6Enabled">
+      <form fxLayout='column'>
+
+        <mat-form-field appearance="outline">
+          <mat-label>网络连接方式</mat-label>
+          <mat-select name="ipv6NetworkMode" [(value)]="ipv6Mode" (valueChange)="changeNetWorkMode($event)">
+            <mat-option value="dhcp">
+              DHCP
+            </mat-option>
+            <mat-option value="static">
+              静态IP
+            </mat-option>
+
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" *ngIf="ipv6Mode==='static'">
+          <mat-label>IPv6地址</mat-label>
+          <input matInput placeholder="请输入IPv6地址" name="ipv6" [(ngModel)]="ipv6">
+          <button *ngIf="ipv6" matSuffix mat-icon-button aria-label="Clear" (click)="ipv6=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" *ngIf="ipv6Mode==='static'">
+          <mat-label>网关</mat-label>
+          <input matInput placeholder="请输入IPv6网关" name="ipv6Gateway" [(ngModel)]="ipv6Gateway">
+          <button *ngIf="ipv6Gateway" matSuffix mat-icon-button aria-label="Clear" (click)="ipv6Gateway=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-slide-toggle class="" name="hasSetIPv6DNS" [color]="color" [(ngModel)]="ipv6DnsChecked" [disabled]="false">
+          配置DNS
+        </mat-slide-toggle>
+
+        <mat-form-field class="" appearance="outline" *ngIf="ipv6DnsChecked">
+          <mat-label>DNS1</mat-label>
+          <input matInput type="text" name="ipv6Dns1" [(ngModel)]="ipv6Dns1">
+          <button *ngIf="ipv6Dns1" matSuffix mat-icon-button aria-label="Clear" (click)="ipv6Dns1=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field class="" appearance="outline" *ngIf="ipv6DnsChecked">
+          <mat-label>DNS2</mat-label>
+          <input matInput type="text" name="ipv6Dns2" [(ngModel)]="ipv6Dns2">
+          <button *ngIf="ipv6Dns2" matSuffix mat-icon-button aria-label="Clear" (click)="ipv6Dns2=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
+
+    </div>
+  </div>
+
+  <div class="info-card network-dhcp">
+    <div class="title">
+      DHCP服务
+      <mat-slide-toggle class="" name="isOpenDHCP" [color]="color" [(ngModel)]="dhcpEnabled">
+      </mat-slide-toggle>
+    </div>
+    <div class="content" [hidden]="!dhcpEnabled">
+      <form fxLayout='column'>
+        <mat-form-field class="" appearance="outline">
+          <mat-label>开始IP</mat-label>
+          <input matInput placeholder="开始IP" value="" name="dhcpStartIP" [(ngModel)]="dhcpStartIP">
+          <button *ngIf="dhcpStartIP" matSuffix mat-icon-button aria-label="Clear" (click)="dhcpStartIP=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field class="" appearance="outline">
+          <mat-label>结束IP</mat-label>
+          <input matInput placeholder="结束IP" value="" name="dhcpEndIP" [(ngModel)]="dhcpEndIP">
+          <button *ngIf="dhcpEndIP" matSuffix mat-icon-button aria-label="Clear" (click)="dhcpEndIP=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field class="" appearance="outline">
+          <mat-label>租约（分）</mat-label>
+          <input matInput placeholder="结束IP" value="" name="dhcpLease" [(ngModel)]="dhcpLease">
+        </mat-form-field>
+
+        <mat-form-field class="" appearance="outline">
+          <mat-label>DNS 1</mat-label>
+          <input matInput placeholder="DNS1" value="" name="dhcpDns1" [(ngModel)]="dhcpDns1">
+          <button *ngIf="dhcpDns1" matSuffix mat-icon-button aria-label="Clear" (click)="dhcpDns1=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field class="" appearance="outline">
+          <mat-label>DNS 2</mat-label>
+          <input matInput placeholder="DNS2" value="" name="dhcpDns2" [(ngModel)]="dhcpDns2">
+          <button *ngIf="dhcpDns2" matSuffix mat-icon-button aria-label="Clear" (click)="dhcpDns2=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field class="" appearance="outline">
+          <mat-label>默认网关</mat-label>
+          <input matInput placeholder="结束IP" value="" name="dhcpGateway" [(ngModel)]="dhcpGateway">
+          <button *ngIf="dhcpGateway" matSuffix mat-icon-button aria-label="Clear" (click)="dhcpGateway=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
+
+    </div>
+  </div>
+
+</div>

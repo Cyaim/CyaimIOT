@@ -1,0 +1,47 @@
+<div class="collect" fxLayout='column' fxFill>
+  <div class="header" fxLayout='row' fxLayoutAlign='space-evenly center'>
+    <dl>
+      <dt>
+        <button mat-fab color="primary" aria-label="网络测速" routerLink="./collect-setting">
+          <mat-icon>settings</mat-icon>
+        </button>
+      </dt>
+      <dd>
+        采集设置
+      </dd>
+    </dl>
+
+    <dl>
+      <dt>
+        <button mat-fab color="primary" aria-label="服务器设置" routerLink="./collect-log">
+          <mat-icon>assessment</mat-icon>
+        </button>
+      </dt>
+      <dd>
+        采集日志
+      </dd>
+    </dl>
+
+    <dl>
+      <dt>
+        <button mat-fab color="primary" aria-label="DDNS" routerLink="./data-handler">
+          <mat-icon>code</mat-icon>
+        </button>
+      </dt>
+      <dd>
+        数据解析程序
+      </dd>
+    </dl>
+
+
+  </div>
+
+  <div class="content" fxFlex='80'>
+    <mat-card>
+      <mat-card-content>
+        <router-outlet></router-outlet>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>

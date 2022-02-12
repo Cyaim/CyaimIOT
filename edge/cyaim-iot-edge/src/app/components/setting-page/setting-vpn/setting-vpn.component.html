@@ -1,0 +1,80 @@
+<div class="vpn list-card">
+  <div class="info-card">
+    <div class="title">
+      VPN
+    </div>
+    <div class="content">
+      <form fxLayout='column'>
+        <h3>服务提供商：vpn.cyaim.com</h3>
+
+        <mat-form-field appearance="outline">
+          <mat-label>用户名</mat-label>
+          <input matInput placeholder="用户名" value="{{vpn.UserName}}" name="UserName">
+          <button *ngIf="vpn.UserName" matSuffix mat-icon-button aria-label="Clear" (click)="vpn.UserName=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>登录信息类型</mat-label>
+          <mat-select name="Mode" [(value)]="vpn.Mode">
+            <mat-option value="cert">
+              证书
+            </mat-option>
+            <mat-option value="password">
+              密码
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>{{vpn.Mode==='cert'?'证书':'密码'}}</mat-label>
+          <input matInput type="password" placeholder="密码" value="" name="Password" [(ngModel)]="vpn.Password"
+            *ngIf="vpn.Mode==='password'">
+
+          <textarea matInput placeholder="证书（公钥/私钥）" rows="30" value="" name="Password" [(ngModel)]="vpn.Password"
+            *ngIf="vpn.Mode==='cert'"></textarea>
+
+          <button *ngIf="vpn.Password" matSuffix mat-icon-button aria-label="Clear" (click)="vpn.Password=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <button mat-raised-button one-btn color="primary">保存</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="info-card network-info">
+    <div class="title">
+      网络信息
+    </div>
+    <div class="content">
+      <mat-list role="list">
+        <mat-list-item role="listitem">
+          <span>IP地址：</span>
+          <span>192.168.1.1</span>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <span>子网掩码：</span>
+          <span>255.255.0.0</span>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <span>默认网关：</span>
+          <span>192.168.1.1</span>
+        </mat-list-item>
+
+        <mat-list-item role="listitem">
+          <span>IPv6地址：</span>
+          <span>None</span>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <span>IPv6网关：</span>
+          <span>None</span>
+        </mat-list-item>
+
+      </mat-list>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,15 @@
+.network {
+
+  .network-info {
+    .content {
+      span:nth-child(odd) {
+        width: 10rem;
+        text-align: right;
+      }
+
+      span:nth-child(even) {
+        color: #AAA;
+      }
+    }
+  }
+}

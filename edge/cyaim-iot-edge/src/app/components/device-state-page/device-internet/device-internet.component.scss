@@ -1,0 +1,31 @@
+.internet {
+  padding: 2.5rem;
+
+
+  .network-state,
+  .network-speed {
+    border-collapse: collapse;
+
+
+    tbody tr:first-child {
+      border-bottom: 1px #EEE solid;
+
+      td {
+        padding: 0 0 1rem 0 !important;
+      }
+    }
+
+    tbody tr {
+      border-bottom: 1px #EEE solid;
+
+      td {
+        padding: 2rem;
+      }
+    }
+  }
+
+  .value {
+    font-size: 18px;
+    color: #3673BF;
+  }
+}

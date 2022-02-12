@@ -1,0 +1,38 @@
+<div class="server list-card">
+  <div class="info-card">
+    <div class="title">
+      主控平台
+    </div>
+    <div class="content">
+      <form fxLayout='column'>
+        <mat-form-field class="" appearance="outline">
+          <mat-label>平台地址</mat-label>
+          <input matInput placeholder="平台地址" value="" name="ServerAddress" [(ngModel)]="platform.ServerAddress">
+          <button *ngIf="platform.ServerAddress" matSuffix mat-icon-button aria-label="Clear"
+            (click)="platform.ServerAddress=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        {{platform.DeviceID}}
+        <mat-form-field class="" appearance="outline">
+          <mat-label>设备ID</mat-label>
+          <input matInput placeholder="设备ID" value="{{platform.DeviceID}}" name="DeviceID" disabled>
+          <button *ngIf="platform.DeviceID" matSuffix mat-icon-button aria-label="Clear" (click)="platform.DeviceID=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field class="" appearance="outline">
+          <mat-label>密码</mat-label>
+          <input matInput type="password" placeholder="密码" value="" name="Password" [(ngModel)]="platform.Password">
+          <button *ngIf="platform.Password" matSuffix mat-icon-button aria-label="Clear" (click)="platform.Password=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <button mat-raised-button one-btn color="primary">保存</button>
+      </form>
+    </div>
+  </div>
+
+</div>

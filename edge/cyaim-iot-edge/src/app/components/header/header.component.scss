@@ -1,0 +1,28 @@
+.header {
+  width: 100%;
+
+  // margin: 0 auto;
+  .nav {
+
+    button {
+      font-size: 18px;
+      font-weight: 500;
+      color: #CCC;
+    }
+
+    button:hover {
+      color: white;
+    }
+
+    button.active {
+      font-weight: bold;
+      color: white;
+    }
+  }
+
+}
+
+.user-info button[mat-button] {
+  font-weight: 1000;
+  color: azure;
+}

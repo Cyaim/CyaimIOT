@@ -1,0 +1,129 @@
+<div class="edit-task" *ngIf="!data.delTaskIds">
+
+  <h2 mat-dialog-title *ngIf="data.taskID==-1">创建新的采集任务</h2>
+  <h2 mat-dialog-title *ngIf="data.taskID>-1">编辑采集任务</h2>
+  <mat-dialog-content>
+    <form>
+      <mat-form-field appearance="outline">
+        <mat-label>传输配置</mat-label>
+        <mat-select name="TransportMode" [(value)]="collectConfig.TransportMode">
+          <mat-option value="serialport">
+            串口
+          </mat-option>
+          <mat-option value="tcp" disabled>
+            TCP
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div *ngIf="collectConfig.TransportMode==='serialport'">
+        <h4>串口配置</h4>
+        <mat-form-field appearance="outline">
+          <mat-label>串口</mat-label>
+          <mat-select name="PortName" [(ngModel)]="serialConfig.PortName">
+            <mat-option *ngFor="let item of coms" value="{{item}}">
+              {{item}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>波特率</mat-label>
+          <input matInput type="number" placeholder="波特率" name="BaudRate" [(ngModel)]="serialConfig.BaudRate">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>校验位</mat-label>
+          <mat-select name="Parity" [(ngModel)]="serialConfig.Parity">
+            <mat-option [value]="item.Value" *ngFor="let item of parity">{{item.Name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>数据位</mat-label>
+          <input matInput type="number" placeholder="数据位" name="DataBits" [(ngModel)]="serialConfig.DataBits">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>停止位</mat-label>
+          <mat-select name="StopBits" [(ngModel)]="serialConfig.StopBits">
+            <mat-option *ngFor="let item of stopBits" [value]="item.Value">
+              {{item.Name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <h4>采集命令</h4>
+        <mat-form-field appearance="outline">
+          <mat-label>协议</mat-label>
+          <mat-select name="CommunicationStandard" [(ngModel)]="collectCmd.CommunicationStandard">
+            <mat-option value="modbus">
+              Modbus
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>从机ID</mat-label>
+          <input matInput type="number" placeholder="从机ID" name="SlaveID" [(ngModel)]="collectCmd.SlaveID">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>功能码</mat-label>
+          <mat-select name="FunctionID" [(ngModel)]="collectCmd.FunctionID" (ngModelChange)="functionChange($event)">
+            <mat-option [value]="item.Value" *ngFor="let item of modbusFunction">{{item.Name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>起始地址</mat-label>
+          <input matInput type="number" min="0" placeholder="起始地址" name="StartAddress"
+            [(ngModel)]="collectCmd.StartAddress">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>寄存器数量</mat-label>
+          <input matInput type="number" min="0" placeholder="寄存器数量" name="NumberOfPoints"
+            [(ngModel)]="collectCmd.NumberOfPoints">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline"
+          *ngIf="collectCmd.FunctionID==='5'?'单个线圈':collectCmd.FunctionID==='15'?'一组线圈':collectCmd.FunctionID==='6'?'单个输入线圈/离散量线圈':collectCmd.FunctionID==='10'?'一组保持寄存器':''">
+          <mat-label>
+            写{{collectCmd.FunctionID==='5'?'单个线圈':collectCmd.FunctionID==='15'?'一组线圈':collectCmd.FunctionID==='6'?'单个输入线圈/离散量线圈':collectCmd.FunctionID==='10'?'一组保持寄存器':''}}
+          </mat-label>
+          <textarea matInput name="data" placeholder="bool值用t或f，数值使用十进制，多个值用,隔开" [(ngModel)]="writeData"
+            (ngModelChange)="writeDataChange($event)"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>处理程序</mat-label>
+          <mat-select name="RunScriptID" [(ngModel)]="collectCmd.RunScriptID">
+            <mat-option [value]="item.Value" *ngFor="let item of handlers">
+              {{item.Name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>附加数据</mat-label>
+          <textarea matInput placeholder="附加数据将传入处理程序" name="State" [(ngModel)]="collectCmd.State"></textarea>
+        </mat-form-field>
+      </div>
+
+
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>返回</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>保存</button>
+  </mat-dialog-actions>
+</div>
+
+<div *ngIf="data.delTaskIds">
+  <h3 mat-dialog-title>确定要删除{{data.delTaskIdCount}}项吗</h3>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>返回</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>确定</button>
+  </mat-dialog-actions>
+</div>

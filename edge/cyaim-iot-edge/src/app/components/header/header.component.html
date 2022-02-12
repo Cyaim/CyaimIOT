@@ -1,0 +1,29 @@
+<!-- Toolbar -->
+<div class="header" fxLayout="row" fxLayoutAlign="space-between center">
+  <div class="logo" fxFlex="20">
+    <a href="">
+      <img src="../../../favicon.ico" alt="">
+    </a>
+  </div>
+
+  <div class="nav" fxFlex fxLayout="row" fxLayoutAlign="start center">
+    <button mat-button routerLink="/device-state" routerLinkActive="active">系统状态</button>
+    <button mat-button routerLink="/sys-setting" routerLinkActive="active">系统设置</button>
+    <button mat-button routerLink="/setting" routerLinkActive="active">高级设置</button>
+    <button mat-button routerLink="/collect_gateway" routerLinkActive="active">采集网关</button>
+  </div>
+
+  <div class="user-info" fxFlex="30" fxLayoutAlign="end">
+    <button mat-button [matMenuTriggerFor]="userInfoMenu">
+      admin
+    </button>
+    <mat-menu #userInfoMenu="matMenu">
+      <button mat-menu-item>修改设备名称</button>
+      <button mat-menu-item>系统升级</button>
+      <button mat-menu-item>重启设备</button>
+      <button mat-menu-item>登出</button>
+    </mat-menu>
+
+
+  </div>
+</div>
