@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cyaim.IOT.Edge", "Cyaim.IOT.Edge\Cyaim.IOT.Edge.csproj", "{5EBAF5C4-A94A-4080-8553-D396A2E37348}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5EBAF5C4-A94A-4080-8553-D396A2E37348}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EBAF5C4-A94A-4080-8553-D396A2E37348}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EBAF5C4-A94A-4080-8553-D396A2E37348}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EBAF5C4-A94A-4080-8553-D396A2E37348}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {302A5807-31E7-476A-B072-5C89B2B9035C}
+	EndGlobalSection
+EndGlobal
