@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Cyaim.IOT.Edge;
+using Cyaim.IOT.Edge.Server;
 using System.IO.Ports;
 
 Console.WriteLine("Hello, World!");
@@ -26,3 +27,6 @@ CollectConfigDto collectConfig = new CollectConfigDto()
                 },
 };
 
+HostServer host = new HostServer();
+
+await host.Run(collectConfig);
